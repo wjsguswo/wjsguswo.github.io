@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hyeonjae Jeon</title>
+<meta name="description" content="Hyeonjae Jeon is a postdoctoral researcher at DGIST working on vision-language-action models for robots and on perception that holds up in adverse conditions.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<a class="skip" href="#about">Skip to content</a>
+
+<div class="page">
+
+  <header class="rail">
+    <p class="name">Hyeonjae Jeon <span lang="ko">전현재</span></p>
+    <p class="role">Postdoctoral researcher at DGIST. Robot learning and robust perception.</p>
+    <nav aria-label="Sections">
+      <a href="#about">About</a>
+      <a href="#research">Research</a>
+      <a href="#publications">Publications</a>
+      <a href="#background">Background</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <main>
+
+    <section class="hero" id="about">
+      <svg class="rain" viewBox="0 0 600 300" preserveAspectRatio="xMaxYMin slice" aria-hidden="true">
+        <g stroke="currentColor" stroke-linecap="round">
+          <line x1="70" y1="-10" x2="40" y2="70" stroke-width="1.2"/>
+          <line x1="150" y1="20" x2="128" y2="80" stroke-width="1"/>
+          <line x1="215" y1="-20" x2="178" y2="78" stroke-width="1.4"/>
+          <line x1="262" y1="60" x2="240" y2="120" stroke-width="1"/>
+          <line x1="330" y1="-5" x2="300" y2="75" stroke-width="1.2"/>
+          <line x1="385" y1="80" x2="356" y2="158" stroke-width="1.4"/>
+          <line x1="430" y1="10" x2="408" y2="70" stroke-width="1"/>
+          <line x1="492" y1="40" x2="455" y2="140" stroke-width="1.6"/>
+          <line x1="548" y1="-10" x2="522" y2="60" stroke-width="1.2"/>
+          <line x1="585" y1="90" x2="556" y2="168" stroke-width="1"/>
+          <line x1="318" y1="150" x2="296" y2="210" stroke-width="1"/>
+          <line x1="452" y1="180" x2="424" y2="256" stroke-width="1.2"/>
+          <line x1="540" y1="200" x2="518" y2="260" stroke-width="1"/>
+          <line x1="205" y1="170" x2="186" y2="222" stroke-width="1"/>
+        </g>
+      </svg>
+      <h1>Robots and vehicles that keep working when conditions stop cooperating.</h1>
+      <p class="lead">I am a postdoctoral researcher at DGIST in Daegu, Korea. I work on vision-language-action models for manipulation and on bringing them to humanoid robots.</p>
+      <p>My Ph.D. was about autonomous driving in heavy rain: measuring how far perception degrades when the camera is blocked, generating realistic rainy data to train on, and restoring images so the vehicle can keep driving. What connects that work to robot learning is one question, which is what a learned system does once the world departs from its training data.</p>
+    </section>
+
+    <section id="research">
+      <h2>Research</h2>
+
+      <article class="thread">
+        <h3>Robust vision-language-action policies</h3>
+        <p class="when">2026 to now, DGIST Physical AI research group</p>
+        <p>Policies trained on demonstrations tend to fail when the robot or the scene is somewhere the demonstrations never visited. I study how to make vision-language-action policies hold up in those states, test them on perturbation benchmarks in simulation, and work toward running them on humanoid and dual-arm platforms.</p>
+      </article>
+
+      <article class="thread">
+        <h3>Autonomous driving in adverse weather</h3>
+        <p class="when">2021 to 2026, Ph.D. at DGIST</p>
+        <p>Rain on a camera lens hides lane markings and produces false detections. I built a simulator-based framework that measures how lane detection degrades as rainfall increases, a style-diversification module that synthesizes varied rain for training multi-task driving perception, and restoration methods that recover the image before perception runs.</p>
+      </article>
+
+      <article class="thread">
+        <h3>Image generation and field robots</h3>
+        <p class="when">Collaborations</p>
+        <p>Brightness-controllable image generation for night driving scenes, and a lane-tracking control system for a robot that repaints road lane markings.</p>
+      </article>
+    </section>
+
+    <section id="publications">
+      <h2>Publications</h2>
+
+      <ol class="pubs">
+        <li>
+          <span class="year">2026</span>
+          <div>
+            <p class="title"><a href="https://scholar.dgist.ac.kr/handle/20.500.11750/60739">Study on Degradation of Autonomous Driving Performance in Adverse Weather Conditions and Deep Learning-based Improvement</a></p>
+            <p class="authors"><b>Hyeonjae Jeon</b></p>
+            <p class="venue">Ph.D. dissertation, DGIST</p>
+          </div>
+        </li>
+        <li>
+          <span class="year">2025</span>
+          <div>
+            <p class="title"><a href="https://arxiv.org/abs/2401.00460">RainSD: Rain Style Diversification Module for Image Synthesis Enhancement Using Feature-Level Style Distribution</a></p>
+            <p class="authors"><b>Hyeonjae Jeon</b>, Junghyun Seo, Taesoo Kim, Sungho Son, Jungki Lee, Gyeungho Choi, Yongseob Lim</p>
+            <p class="venue">Robotics and Autonomous Systems, vol. 186</p>
+          </div>
+        </li>
+        <li>
+          <span class="year">2024</span>
+          <div>
+            <p class="title">LuminanceGAN: Controlling the Brightness of Generated Images for Various Night Conditions</p>
+            <p class="authors">Junghyun Seo, Sungjun Wang, <b>Hyeonjae Jeon</b>, Taesoo Kim, Yongsik Jin, Soon Kwon, Jeseok Kim, Yongseob Lim</p>
+            <p class="venue">Pattern Recognition Letters, vol. 186</p>
+          </div>
+        </li>
+        <li>
+          <span class="year">2024</span>
+          <div>
+            <p class="title">BEV Image-based Lane Tracking Control System for Autonomous Lane Repainting Robot</p>
+            <p class="authors">Junghyun Seo, <b>Hyeonjae Jeon</b>, Joonyoung Choi, Kwangho Woo, Yongseob Lim, Yongsik Jin</p>
+            <p class="venue">IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS)</p>
+          </div>
+        </li>
+        <li>
+          <span class="year">2022</span>
+          <div>
+            <p class="title"><a href="https://doi.org/10.1109/LRA.2022.3192632">CARLA Simulator-Based Evaluation Framework Development of Lane Detection Accuracy Performance Under Sensor Blockage Caused by Heavy Rain for Autonomous Vehicle</a></p>
+            <p class="authors"><b>Hyeonjae Jeon</b>, YaeOhn Kim, Minyoung Choi, Donggeon Park, Sungho Son, Jungki Lee, Gyeungho Choi, Yongseob Lim</p>
+            <p class="venue">IEEE Robotics and Automation Letters</p>
+          </div>
+        </li>
+      </ol>
+    </section>
+
+    <section id="background">
+      <h2>Background</h2>
+      <dl class="cv">
+        <div>
+          <dt>2026 to now</dt>
+          <dd><b>Postdoctoral researcher</b>, DGIST<br>Physical AI research group and Cybernetics Lab. Vision-language-action models and their use on humanoid robots.</dd>
+        </div>
+        <div>
+          <dt>2021 to 2026</dt>
+          <dd><b>Ph.D. in Robotics and Mechatronics Engineering</b>, DGIST<br>Dissertation on autonomous driving performance in adverse weather. Advisor: Yongseob Lim.</dd>
+        </div>
+        <div>
+          <dt>2021</dt>
+          <dd><b>B.S.</b>, DGIST</dd>
+        </div>
+      </dl>
+
+      <h3 class="sub">Tools I work with</h3>
+      <p>OpenVLA-OFT and the &pi; family of policies (PyTorch and JAX), LIBERO and LIBERO-Plus on MuJoCo, CARLA, image-to-image translation and diffusion-based restoration, and Slurm clusters for training and evaluation.</p>
+    </section>
+
+    <section id="contact">
+      <h2>Contact</h2>
+      <p>The quickest way to reach me is through GitHub.</p>
+      <ul class="links">
+        <li><a href="https://github.com/wjsguswo">GitHub</a></li>
+        <li><a href="https://scholar.dgist.ac.kr/handle/20.500.11750/60739">DGIST Scholar</a></li>
+      </ul>
+    </section>
+
+    <footer>
+      <p>Daegu, Republic of Korea</p>
+    </footer>
+  </main>
+</div>
+
+<script>
+// Mark the nav link of the section currently in view.
+(function () {
+  var links = document.querySelectorAll('.rail nav a');
+  if (!('IntersectionObserver' in window)) return;
+  var byId = {};
+  links.forEach(function (a) { byId[a.getAttribute('href').slice(1)] = a; });
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (e.isIntersecting) {
+        links.forEach(function (a) { a.removeAttribute('aria-current'); });
+        var a = byId[e.target.id]; if (a) a.setAttribute('aria-current', 'true');
+      }
+    });
+  }, { rootMargin: '-30% 0px -60% 0px' });
+  document.querySelectorAll('main section[id]').forEach(function (s) { io.observe(s); });
+})();
+</script>
+</body>
+</html>
