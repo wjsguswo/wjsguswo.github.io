@@ -167,6 +167,7 @@ details[open] summary { margin-bottom: 0.9rem; }
 .cv dt { font-weight: 600; font-variant-numeric: tabular-nums; }
 .cv dd { margin: 0; }
 .cv dd b { font-weight: 600; }
+.cv .ko { font-size: 0.97rem; line-height: 1.5; color: var(--ink); word-break: keep-all; }
 
 #contact .links { margin-top: 1.5rem; }
 
