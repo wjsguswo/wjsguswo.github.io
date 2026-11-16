@@ -1,11 +1,12 @@
-/* Palette: overcast sky, wet asphalt, lane paint, rain. */
+/* Palette: night sky, overcast page, slate ink, and one luminous blue taken from the campus glass. */
 :root {
   --page: #e9eef0;
   --panel: #dbe3e7;
   --rule: #b9c6cc;
   --ink: #1b272e;
   --ink-soft: #4a5a63;
-  --lane: #f0be00;
+  --accent: #2bb4f0;
+  --accent-deep: #1f7fd1;
   --rain: #23668e;
   --on-dark: #f2f6f7;
   --on-dark-soft: #c3d0d6;
@@ -27,7 +28,7 @@ body {
 }
 a { color: var(--rain); text-decoration-thickness: 1px; text-underline-offset: 0.18em; }
 a:hover { text-decoration-thickness: 2px; }
-a:focus-visible, summary:focus-visible, .skip:focus { outline: 3px solid var(--lane); outline-offset: 3px; border-radius: 2px; }
+a:focus-visible, summary:focus-visible, .skip:focus { outline: 3px solid var(--accent); outline-offset: 3px; border-radius: 2px; }
 .skip { position: absolute; left: -999px; top: 0.5rem; background: var(--ink); color: var(--page); padding: 0.5rem 0.9rem; }
 .skip:focus { left: 0.5rem; z-index: 10; }
 .soft { color: var(--ink-soft); }
@@ -44,10 +45,11 @@ a:focus-visible, summary:focus-visible, .skip:focus { outline: 3px solid var(--l
   content: ""; position: absolute; left: 0; right: 0; top: 0; height: 42%;
   background: linear-gradient(to bottom, var(--night) 0%, rgba(5, 16, 34, 0.72) 38%, rgba(5, 16, 34, 0) 100%);
 }
-/* the lane marking starts here as a horizontal dashed line and turns down the page below */
+/* a thin line of light closes the header; the same light runs down the page as the section guide */
 .hero::after {
-  content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 6px;
-  background-image: repeating-linear-gradient(to right, var(--lane) 0 2.4rem, transparent 2.4rem 4rem);
+  content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 2px;
+  background: linear-gradient(90deg, rgba(43, 180, 240, 0) 0%, var(--accent) 16%, #9fe8ff 50%, var(--accent-deep) 84%, rgba(31, 127, 209, 0) 100%);
+  box-shadow: 0 0 22px 3px rgba(43, 180, 240, 0.55);
 }
 .rain { position: absolute; top: 0; right: 0; width: 55%; height: 27rem; color: #a9cde4; opacity: 0.22; pointer-events: none; }
 .hero-inner { position: relative; z-index: 1; max-width: 72rem; margin: 0 auto; padding: 2.75rem 2rem 2.5rem; }
@@ -72,8 +74,8 @@ h1 {
   color: var(--on-dark); border: 1.5px solid rgba(242, 246, 247, 0.6);
 }
 .links a:hover { background: rgba(242, 246, 247, 0.14); border-color: var(--on-dark); }
-.links li:first-child a { background: var(--lane); border-color: var(--lane); color: #1b1a12; font-weight: 600; }
-.links li:first-child a:hover { background: #ffd21f; border-color: #ffd21f; }
+.links li:first-child a { background: linear-gradient(135deg, #7ddcff, #2ba6ee); border-color: transparent; color: #04121f; font-weight: 600; }
+.links li:first-child a:hover { background: linear-gradient(135deg, #a5e8ff, #4bb8f5); border-color: transparent; }
 .links.dark a, .links.dark li:first-child a { background: var(--ink); border-color: var(--ink); color: var(--page); font-weight: 500; }
 .links.dark a:hover, .links.dark li:first-child a:hover { background: var(--rain); border-color: var(--rain); }
 
@@ -89,17 +91,27 @@ h1 {
   height: 100vh;
   padding: 3.25rem 2rem 2rem 2rem;
   display: flex; flex-direction: column; gap: 0.15rem;
-  background-image: repeating-linear-gradient(to bottom, var(--lane) 0 2.4rem, transparent 2.4rem 4rem);
-  background-size: 6px 100%;
+  /* hairline guide: bright where it leaves the header, fading as it goes down */
+  background-image: linear-gradient(to bottom, var(--accent) 0%, rgba(43, 180, 240, 0.45) 30%, rgba(43, 180, 240, 0.12) 70%, rgba(43, 180, 240, 0) 100%);
+  background-size: 1px 100%;
   background-position: right top;
   background-repeat: no-repeat;
 }
 .rail a {
-  color: var(--ink); text-decoration: none; font-weight: 500;
+  position: relative;
+  color: var(--ink-soft); text-decoration: none; font-weight: 400;
   padding: 0.3rem 0.6rem; margin-left: -0.6rem; border-radius: 3px;
+  transition: color 0.2s;
 }
-.rail a:hover { background: var(--panel); }
-.rail a[aria-current="true"] { background: var(--ink); color: var(--page); }
+.rail a:hover { color: var(--ink); }
+.rail a[aria-current="true"] { color: var(--ink); font-weight: 600; }
+/* the current section lights up a short segment of the guide */
+.rail a[aria-current="true"]::after {
+  content: ""; position: absolute; right: calc(-2rem - 1px); top: 12%; bottom: 12%; width: 3px; border-radius: 2px;
+  background: linear-gradient(to bottom, #9fe8ff, var(--accent-deep));
+  box-shadow: 0 0 12px 1px rgba(43, 180, 240, 0.7);
+}
+@media (prefers-reduced-motion: reduce) { .rail a { transition: none; } }
 main { padding: 3.25rem 2rem 5rem 3.5rem; min-width: 0; }
 main p { max-width: var(--measure); }
 .big { font-size: 1.2rem; line-height: 1.55; font-weight: 400; margin-top: 0; }
@@ -107,6 +119,12 @@ main p { max-width: var(--measure); }
 /* ---------- Sections ---------- */
 main section + section { margin-top: 4.75rem; }
 h2 { margin: 0 0 1.4rem; font-size: 1.8rem; font-weight: 600; letter-spacing: -0.02em; line-height: 1.15; }
+/* each section opens with a short segment of the same light */
+h2::before {
+  content: ""; display: block; width: 2.75rem; height: 2px; margin-bottom: 1.1rem; border-radius: 1px;
+  background: linear-gradient(90deg, #7ddcff, var(--accent-deep));
+  box-shadow: 0 0 10px rgba(43, 180, 240, 0.6);
+}
 h3 { margin: 0; font-size: 1.15rem; font-weight: 600; letter-spacing: -0.008em; line-height: 1.3; }
 b, strong { font-weight: 600; }
 .sub { margin-top: 2.5rem; margin-bottom: 0.9rem; }
@@ -172,6 +190,8 @@ details[open] summary { margin-bottom: 0.9rem; }
     position: static; height: auto; flex-direction: row; flex-wrap: wrap; gap: 0.1rem 0.4rem;
     padding: 1.1rem 1.25rem 1rem; background-image: none; border-bottom: 1px solid var(--rule);
   }
+  .rail a { margin-left: 0; padding: 0.3rem 0.45rem; }
+  .rail a[aria-current="true"]::after { right: 0.45rem; left: 0.45rem; top: auto; bottom: 0; width: auto; height: 2px; background: linear-gradient(to right, #6fd6ff, var(--accent-deep)); }
   main { padding: 2.25rem 1.25rem 3.5rem; }
   main section + section { margin-top: 3.5rem; }
   .pubs li, .cv > div, .interests > div { grid-template-columns: 1fr; }
