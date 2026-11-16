@@ -48,6 +48,7 @@ a:focus-visible, .skip:focus { outline: 3px solid var(--lane); outline-offset: 3
 main { padding: 3.25rem 2rem 4rem 3.5rem; min-width: 0; }
 
 /* ---------- Rail ---------- */
+.portrait { display: block; width: 8.5rem; height: auto; aspect-ratio: 4 / 5; object-fit: cover; border-radius: 3px; margin: 0 0 1.25rem; background: var(--panel); }
 .name { margin: 0; font-weight: 800; font-size: 1.5rem; line-height: 1.15; letter-spacing: -0.02em; }
 .name span { display: block; font-weight: 500; font-size: 1.05rem; letter-spacing: 0; margin-top: 0.3rem; color: var(--ink-soft); }
 .role { margin: 1rem 0 2.25rem; font-size: 0.95rem; line-height: 1.45; color: var(--ink-soft); }
@@ -123,6 +124,8 @@ footer { margin-top: 5rem; color: var(--ink-soft); font-size: 0.92rem; }
     background-size: 100% 6px;
     background-position: left bottom;
   }
+  .portrait { float: right; width: 5.25rem; margin: 0 0 0.75rem 1rem; }
+  .rail nav { clear: both; }
   .role { margin: 0.6rem 0 1rem; }
   .rail nav { flex-direction: row; flex-wrap: wrap; gap: 0.1rem 0.4rem; }
   main { padding: 2.25rem 1.25rem 3rem; }
