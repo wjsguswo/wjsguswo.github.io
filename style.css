@@ -2,15 +2,20 @@
 :root {
   --page: #e9eef0;
   --panel: #dbe3e7;
+  --rule: #b9c6cc;
   --ink: #1b272e;
   --ink-soft: #4a5a63;
   --lane: #f0be00;
   --rain: #23668e;
-  --rail-w: 17rem;
-  --measure: 40rem;
+  --on-dark: #f2f6f7;
+  --on-dark-soft: #c3d0d6;
+  --rail-w: 13.5rem;
+  --measure: 41rem;
+  /* Campus photograph behind the header. Set to url(assets/campus.jpg) once the file is added. */
+  --campus: none;
 }
 *, *::before, *::after { box-sizing: border-box; }
-html { scroll-behavior: smooth; scroll-padding-top: 2rem; }
+html { scroll-behavior: smooth; scroll-padding-top: 1.5rem; }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
 body {
   margin: 0;
@@ -23,114 +28,145 @@ body {
 }
 a { color: var(--rain); text-decoration-thickness: 1px; text-underline-offset: 0.18em; }
 a:hover { text-decoration-thickness: 2px; }
-a:focus-visible, .skip:focus { outline: 3px solid var(--lane); outline-offset: 3px; border-radius: 2px; }
+a:focus-visible, summary:focus-visible, .skip:focus { outline: 3px solid var(--lane); outline-offset: 3px; border-radius: 2px; }
 .skip { position: absolute; left: -999px; top: 0.5rem; background: var(--ink); color: var(--page); padding: 0.5rem 0.9rem; }
 .skip:focus { left: 0.5rem; z-index: 10; }
+.soft { color: var(--ink-soft); }
 
-/* ---------- Layout ---------- */
+/* ---------- Header: campus photograph under a slate wash ---------- */
+.hero {
+  position: relative; overflow: hidden;
+  color: var(--on-dark);
+  background-color: #16232b;
+  background-image:
+    linear-gradient(180deg, rgba(18, 31, 39, 0.78) 0%, rgba(18, 31, 39, 0.52) 42%, rgba(18, 31, 39, 0.9) 100%),
+    radial-gradient(110% 95% at 88% 0%, rgba(52, 108, 146, 0.6), rgba(52, 108, 146, 0) 62%),
+    var(--campus);
+  background-size: cover;
+  background-position: center 38%;
+}
+/* the lane marking starts here as a horizontal dashed line and turns down the page below */
+.hero::after {
+  content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 6px;
+  background-image: repeating-linear-gradient(to right, var(--lane) 0 2.4rem, transparent 2.4rem 4rem);
+}
+.rain { position: absolute; top: 0; right: 0; width: 58%; height: 100%; color: #a9cde4; opacity: 0.32; pointer-events: none; }
+.hero-inner { position: relative; max-width: 72rem; margin: 0 auto; padding: 3rem 2rem 4.25rem; }
+.id { display: flex; align-items: center; gap: 1.1rem; margin-bottom: 3.25rem; }
+.portrait { display: block; width: 5.5rem; height: auto; aspect-ratio: 4 / 5; object-fit: cover; border-radius: 4px; outline: 2px solid rgba(242, 246, 247, 0.85); outline-offset: 0; background: var(--panel); }
+.name { margin: 0; font-weight: 800; font-size: 1.45rem; line-height: 1.2; letter-spacing: -0.02em; }
+.name span { font-weight: 500; font-size: 1.05rem; letter-spacing: 0; margin-left: 0.5rem; color: var(--on-dark-soft); }
+.role { margin: 0.35rem 0 0; font-size: 0.97rem; line-height: 1.45; color: var(--on-dark-soft); }
+h1 {
+  margin: 0 0 1.5rem;
+  max-width: 17ch;
+  font-size: clamp(2.5rem, 5.8vw, 4.6rem);
+  font-weight: 800; line-height: 1.02; letter-spacing: -0.035em;
+  text-wrap: balance;
+}
+.lead { font-size: 1.3rem; line-height: 1.45; max-width: 36rem; margin: 0 0 2rem; font-weight: 500; color: var(--on-dark); }
+
+.links { list-style: none; padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: 0.7rem; }
+.links a {
+  display: inline-block; padding: 0.55rem 1.1rem; border-radius: 3px;
+  text-decoration: none; font-weight: 500;
+  color: var(--on-dark); border: 1.5px solid rgba(242, 246, 247, 0.6);
+}
+.links a:hover { background: rgba(242, 246, 247, 0.14); border-color: var(--on-dark); }
+.links li:first-child a { background: var(--lane); border-color: var(--lane); color: #1b1a12; font-weight: 700; }
+.links li:first-child a:hover { background: #ffd21f; border-color: #ffd21f; }
+.links.dark a, .links.dark li:first-child a { background: var(--ink); border-color: var(--ink); color: var(--page); font-weight: 500; }
+.links.dark a:hover, .links.dark li:first-child a:hover { background: var(--rain); border-color: var(--rain); }
+
+/* ---------- Body layout ---------- */
 .page {
   display: grid;
   grid-template-columns: var(--rail-w) minmax(0, 1fr);
   max-width: 72rem;
   margin: 0 auto;
-  min-height: 100vh;
 }
 .rail {
   position: sticky; top: 0; align-self: start;
   height: 100vh;
-  padding: 3.25rem 2.25rem 2rem 2rem;
-  /* the lane marking: a dashed yellow line that runs the height of the page */
+  padding: 3.25rem 2rem 2rem 2rem;
+  display: flex; flex-direction: column; gap: 0.15rem;
   background-image: repeating-linear-gradient(to bottom, var(--lane) 0 2.4rem, transparent 2.4rem 4rem);
   background-size: 6px 100%;
   background-position: right top;
   background-repeat: no-repeat;
 }
-main { padding: 3.25rem 2rem 4rem 3.5rem; min-width: 0; }
-
-/* ---------- Rail ---------- */
-.portrait { display: block; width: 8.5rem; height: auto; aspect-ratio: 4 / 5; object-fit: cover; border-radius: 3px; margin: 0 0 1.25rem; background: var(--panel); }
-.name { margin: 0; font-weight: 800; font-size: 1.5rem; line-height: 1.15; letter-spacing: -0.02em; }
-.name span { display: block; font-weight: 500; font-size: 1.05rem; letter-spacing: 0; margin-top: 0.3rem; color: var(--ink-soft); }
-.role { margin: 1rem 0 2.25rem; font-size: 0.95rem; line-height: 1.45; color: var(--ink-soft); }
-.rail nav { display: flex; flex-direction: column; gap: 0.15rem; }
-.rail nav a {
+.rail a {
   color: var(--ink); text-decoration: none; font-weight: 500;
   padding: 0.3rem 0.6rem; margin-left: -0.6rem; border-radius: 3px;
 }
-.rail nav a:hover { background: var(--panel); }
-.rail nav a[aria-current="true"] { background: var(--ink); color: var(--page); }
-
-/* ---------- Hero ---------- */
-.hero { position: relative; padding-bottom: 1rem; }
-.rain { position: absolute; top: -3.25rem; right: -2rem; width: 62%; height: 19rem; color: var(--rain); opacity: 0.38; pointer-events: none; }
-h1 {
-  position: relative;
-  margin: 0 0 1.75rem;
-  max-width: 15ch;
-  font-size: clamp(2.5rem, 5.6vw, 4.25rem);
-  font-weight: 800; line-height: 1.02; letter-spacing: -0.035em;
-  text-wrap: balance;
-}
-.lead { font-size: 1.3rem; line-height: 1.45; max-width: 34rem; margin: 0 0 1rem; font-weight: 500; }
+.rail a:hover { background: var(--panel); }
+.rail a[aria-current="true"] { background: var(--ink); color: var(--page); }
+main { padding: 3.25rem 2rem 5rem 3.5rem; min-width: 0; }
 main p { max-width: var(--measure); }
+.big { font-size: 1.25rem; line-height: 1.5; font-weight: 500; margin-top: 0; }
 
 /* ---------- Sections ---------- */
-main section + section { margin-top: 4.5rem; }
-h2 { margin: 0 0 1.5rem; font-size: 1.9rem; font-weight: 800; letter-spacing: -0.025em; line-height: 1.1; }
+main section + section { margin-top: 4.75rem; }
+h2 { margin: 0 0 1.4rem; font-size: 2rem; font-weight: 800; letter-spacing: -0.025em; line-height: 1.1; }
 h3 { margin: 0; font-size: 1.2rem; font-weight: 700; letter-spacing: -0.01em; line-height: 1.25; }
-.sub { margin-top: 2.25rem; margin-bottom: 0.5rem; }
+.sub { margin-top: 2.5rem; margin-bottom: 0.9rem; }
 
-.thread { max-width: var(--measure); padding: 1.25rem 0 1.4rem; border-top: 1px solid #b9c6cc; }
-.thread:last-child { border-bottom: 1px solid #b9c6cc; }
+.interests { margin: 0; max-width: 46rem; }
+.interests > div { display: grid; grid-template-columns: 15rem minmax(0, 1fr); gap: 0 1.25rem; padding: 0.8rem 0; border-top: 1px solid var(--rule); }
+.interests > div:last-child { border-bottom: 1px solid var(--rule); }
+.interests dt { font-weight: 700; line-height: 1.35; }
+.interests dd { margin: 0; color: var(--ink-soft); }
+
+.thread { max-width: var(--measure); padding: 1.25rem 0 1.4rem; border-top: 1px solid var(--rule); }
+.thread:last-child { border-bottom: 1px solid var(--rule); }
 .thread p { margin: 0.6rem 0 0; }
-.when { color: var(--ink-soft); font-size: 0.95rem; margin-top: 0.2rem !important; }
+.thread .when { color: var(--ink-soft); font-size: 0.95rem; margin-top: 0.2rem; }
 
 /* ---------- Publications ---------- */
 .pubs { list-style: none; margin: 0; padding: 0; max-width: 46rem; }
-.pubs li { display: grid; grid-template-columns: 4rem minmax(0, 1fr); gap: 0 1rem; padding: 1rem 0; border-top: 1px solid #b9c6cc; }
-.pubs li:last-child { border-bottom: 1px solid #b9c6cc; }
+.pubs li { display: grid; grid-template-columns: 4rem minmax(0, 1fr); gap: 0 1rem; padding: 1rem 0; border-top: 1px solid var(--rule); }
+.pubs > li:last-child { border-bottom: 1px solid var(--rule); }
 .pubs p { margin: 0; max-width: none; }
 .year { font-weight: 700; font-variant-numeric: tabular-nums; }
 .title { font-weight: 700; line-height: 1.35; }
-.title a { color: var(--ink); }
-.title a:hover { color: var(--rain); }
-.authors { font-size: 0.97rem; margin-top: 0.3rem !important; color: var(--ink-soft); }
+.pubs .authors { font-size: 0.97rem; margin-top: 0.3rem; color: var(--ink-soft); }
 .authors b { color: var(--ink); font-weight: 700; }
 .venue { font-size: 0.97rem; color: var(--ink-soft); }
+.pubs .note { font-size: 0.92rem; margin-top: 0.25rem; color: var(--ink); }
+.chips { list-style: none; display: flex; gap: 0.5rem; padding: 0; margin: 0.5rem 0 0; }
+.pubs .chips li { display: block; padding: 0; border: 0; }
+.chips a { display: inline-block; font-size: 0.9rem; font-weight: 500; padding: 0.1rem 0.6rem; border: 1px solid var(--rain); border-radius: 3px; text-decoration: none; }
+.chips a:hover { background: var(--rain); color: var(--page); }
 
-/* ---------- Background ---------- */
+details { max-width: 46rem; margin-top: 2.5rem; }
+summary { cursor: pointer; font-weight: 700; font-size: 1.2rem; letter-spacing: -0.01em; padding: 0.4rem 0; }
+details[open] summary { margin-bottom: 0.9rem; }
+
+/* ---------- Dated lists (projects, background) ---------- */
 .cv { margin: 0; max-width: 46rem; }
-.cv > div { display: grid; grid-template-columns: 8.5rem minmax(0, 1fr); gap: 0 1rem; padding: 1rem 0; border-top: 1px solid #b9c6cc; }
-.cv > div:last-child { border-bottom: 1px solid #b9c6cc; }
+.cv > div { display: grid; grid-template-columns: 8.5rem minmax(0, 1fr); gap: 0 1rem; padding: 1rem 0; border-top: 1px solid var(--rule); }
+.cv > div:last-child { border-bottom: 1px solid var(--rule); }
 .cv dt { font-weight: 700; font-variant-numeric: tabular-nums; }
 .cv dd { margin: 0; }
+.cv dd b { font-weight: 700; }
 
-/* ---------- Contact ---------- */
-.links { list-style: none; padding: 0; margin: 1rem 0 0; display: flex; flex-wrap: wrap; gap: 0.75rem; }
-.links a {
-  display: inline-block; padding: 0.55rem 1.1rem; border-radius: 3px;
-  background: var(--ink); color: var(--page); text-decoration: none; font-weight: 500;
-}
-.links a:hover { background: var(--rain); }
-footer { margin-top: 5rem; color: var(--ink-soft); font-size: 0.92rem; }
+#contact .links { margin-top: 1.5rem; }
 
-/* ---------- Narrow screens: the rail becomes a header, the lane line turns horizontal ---------- */
+/* ---------- Narrow screens ---------- */
 @media (max-width: 52rem) {
+  .hero-inner { padding: 2rem 1.25rem 3.25rem; }
+  .id { margin-bottom: 2.25rem; align-items: flex-start; }
+  .portrait { width: 4.5rem; }
+  .name span { display: block; margin: 0.15rem 0 0; }
+  .lead { font-size: 1.15rem; }
+  .rain { width: 85%; opacity: 0.24; }
   .page { display: block; }
   .rail {
-    position: static; height: auto;
-    padding: 1.75rem 1.25rem 1.6rem;
-    background-image: repeating-linear-gradient(to right, var(--lane) 0 2.4rem, transparent 2.4rem 4rem);
-    background-size: 100% 6px;
-    background-position: left bottom;
+    position: static; height: auto; flex-direction: row; flex-wrap: wrap; gap: 0.1rem 0.4rem;
+    padding: 1.1rem 1.25rem 1rem; background-image: none; border-bottom: 1px solid var(--rule);
   }
-  .portrait { float: right; width: 5.25rem; margin: 0 0 0.75rem 1rem; }
-  .rail nav { clear: both; }
-  .role { margin: 0.6rem 0 1rem; }
-  .rail nav { flex-direction: row; flex-wrap: wrap; gap: 0.1rem 0.4rem; }
-  main { padding: 2.25rem 1.25rem 3rem; }
-  .rain { top: -2.25rem; right: -1.25rem; width: 80%; height: 13rem; opacity: 0.28; }
-  .pubs li { grid-template-columns: 1fr; }
-  .cv > div { grid-template-columns: 1fr; }
-  main section + section { margin-top: 3.25rem; }
+  main { padding: 2.25rem 1.25rem 3.5rem; }
+  main section + section { margin-top: 3.5rem; }
+  .pubs li, .cv > div, .interests > div { grid-template-columns: 1fr; }
+  .interests dd { margin-top: 0.15rem; }
 }
